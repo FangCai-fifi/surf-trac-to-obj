@@ -7,7 +7,7 @@ These scripts are used to generate brain surface and tract files (in .obj format
 ## Requirements
 
 - Python 3.x;
-- Python packages: numpy, PyWavefront, nipy;
+- Python packages: numpy, PyWavefront, nipy, nibabel;
 - Prerequisites: Freesurfer 'recon-all' and 'trac-all' result packages prepared.
 
 ### Prerequisite steps
@@ -28,6 +28,9 @@ Here we list a series of commands (from FSL and Freesurfer) you may need before 
     trac-all -prep -c $TUTORIAL_DATA/diffusion_tutorial/dmrirc.tutorial
     trac-all -bedp -c $TUTORIAL_DATA/diffusion_tutorial/dmrirc.tutorial
     trac-all -path -c $TUTORIAL_DATA/diffusion_tutorial/dmrirc.tutorial
+
+    # you may also want to generate more specific surface labels in the recon-all packages; see [mri_annotation2label](https://surfer.nmr.mgh.harvard.edu/fswiki/mri_annotation2label)
+    mri_annotation2label --subject <subif> --hemi <lh/rh> --label <label#int> --outdir <dir> --annotation <'aparc'/'aparc.a2009s'>
     
     # Now you get all result packages ready:) The previous steps may take a long time and you may meet some configuration bugs. Hope you go through it well. Good luck!
 

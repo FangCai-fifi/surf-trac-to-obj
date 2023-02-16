@@ -2,8 +2,8 @@ import os
 import numpy as np
 import utils
 
-SUBDIR = '/Applications/freesurfer/7.1.0/subjects'
-SUBNAME = 'PZH'
+SUBDIR = '/Applications/freesurfer/7.1.0/subjects' # replace it with your recon-all package path
+SUBNAME = 'example' # replace it with your subject id
 
 
 # lh.pial to lh.pial.obj
@@ -34,5 +34,5 @@ utils.write_obj(ver=ver_lh_V1, face=face_lh_V1, objPath='assets/lh.V1_exvivo.obj
 # write an rh.MT_exvivo.obj
 labelPath_rh_MT = os.path.join(SUBDIR, SUBNAME, 'label', 'rh.MT_exvivo.label')
 label_ver_rh_MT = utils.read_label(labelPath=labelPath_rh_MT)
-ver_rh_MT, face_rh_MT = utils.read_parc_surf(ver=all_ver, face=all_face, label_ver=label_ver_rh_MT)
+ver_rh_MT, face_rh_MT = utils.read_parc_surf(ver=verr, face=facer, label_ver=label_ver_rh_MT)
 utils.write_obj(ver=ver_rh_MT, face=face_rh_MT, objPath='assets/rh.MT_exvivo.obj', plusOne=True)

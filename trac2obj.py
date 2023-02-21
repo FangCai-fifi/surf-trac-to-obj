@@ -1,6 +1,5 @@
 import os
 import re
-import numpy as np
 import nibabel as nib
 import utils
 
@@ -13,7 +12,7 @@ trkPath = os.path.join(SUBDIR, SUBNAME, 'dpath')
 for root, dirs, files in os.walk(trkPath, topdown=True):
     for dirname in dirs:
         for item in TRKLIST:
-            if re.search(item, dirname): # if found preprocessed!
+            if re.search(item, dirname):
                 dpath = os.path.join(trkPath, dirname, 'path.pd.trk')
                 print(dpath)
                 ver, face = utils.read_trk(path=nib.streamlines.load(dpath))

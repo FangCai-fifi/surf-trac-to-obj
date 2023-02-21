@@ -3,16 +3,19 @@ These scripts are used to generate brain surface and tract files (in .obj format
 
 ## Overview
 
+The surface and tracts imported in Unity:
+
+![](./docs/brain_surf_trac.png)
 
 ## Requirements
 
 - Python 3.x;
-- Python packages: numpy, PyWavefront, nipy, nibabel;
+- Python packages: numpy, nibabel;
 - Prerequisites: Freesurfer 'recon-all' and 'trac-all' result packages prepared.
 
 ### Prerequisite steps
 
-Here we list a series of commands (from FSL and Freesurfer) you may need before running **surf2obj** or **trac2obj** scripts. The prerequisite steps should be conducted in a Mac or Linux environment with FSL and Freesurfer installed.
+Here we list a series of commands (from FSL and Freesurfer) you may need before running **surf2obj** or **trac2obj** scripts. The prerequisite steps should be conducted in a Mac or Linux environment with FSL and Freesurfer installed. If you have those data packages prepared, just skip these steps.
 
     # run 'recon-all' pipeline; see [Freesurfer](https://surfer.nmr.mgh.harvard.edu/fswiki/recon-all) for more details
     recon-all -i <T1.nii.gz> -s <subid> -all -parallel -openmp 8 ><subid>.log 2>&1
@@ -36,4 +39,5 @@ Here we list a series of commands (from FSL and Freesurfer) you may need before 
 
 ## Script Descriptions
 
-
+- surf2obj.py -- read Freesurfer surface files (.pial, .white, etc.) and write .obj files from them in SurfaceRAS/tkRAS coordinates
+- trac2obj.py -- read Freesurfer tract files (.trk) and write .obj files from them in SurfaceRAS/tkRAS coordinates registered with the surface files

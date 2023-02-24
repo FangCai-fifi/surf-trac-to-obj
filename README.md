@@ -3,9 +3,15 @@ These scripts are used to generate brain surface and tract files (in .obj format
 
 ## Overview
 
-The surface and tracts imported in Unity:
+The surface and tracts imported in Unity or read by MacOS Preview:
 
 ![](./docs/brain_surf_trac.png)
+
+![](./docs/brain_surf_pial.png)
+
+![](./docs/brain_surf_lh_V1.png)
+
+![](./docs/brain_tract_ilf_colored.png)
 
 ## Requirements
 

@@ -74,3 +74,43 @@ def read_trk(path):
         arrPre += verNum_list[i+1]
     
     return ver_tkras, face
+
+
+def read_trk_lines(path):
+    tracNum = 0
+    verNum = 0
+    ver = np.array([0, 0, 0])
+    verNum_list = []
+    for item in path.streamlines:
+        verNum += item.shape[0]
+        verNum_list.append(item.shape[0])
+        tracNum += 1
+        ver = np.vstack((ver, item))
+    ver = ver[1:, :]
+    
+    ver_4d = np.hstack((ver, np.ones((ver.shape[0],1))))
+    ver_vox = np.matmul(np.linalg.inv(path.affine), np.transpose(ver_4d))
+    trkvox2tkras = np.array([[-1, 0, 0, 128], [0, 1, 0, -128], [0, 0, 1, -127], [0, 0, 0, 1]]) # trk pkg is always LAS orientation!!!
+    ver_tkras = np.transpose(np.matmul(trkvox2tkras, ver_vox)[0:3, :])
+    
+    lines = {}
+    arrLen = verNum_list[0]
+    lines[0] = np.arange(1, arrLen, 1)
+    arrPre = verNum_list[0]
+    for i in range(tracNum-1):
+        arrLen = verNum_list[i+1]
+        lines[i+1] = np.arange(1+arrPre, arrLen+arrPre, 1)
+        arrPre += verNum_list[i+1]
+    
+    return ver_tkras, lines
+
+def write_obj_line(ver, lines, objPath):
+    
+    thefile = open(objPath, 'w')
+    
+    for item in ver:
+        thefile.write("v {0} {1} {2}\n".format(item[0],item[1],item[2]))
+    for item in lines:
+        thefile.write(f"l {' '.join(str(e) for e in lines[item])}\n")
+        
+    thefile.close()

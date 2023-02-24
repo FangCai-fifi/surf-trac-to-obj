@@ -3,15 +3,21 @@ These scripts are used to generate brain surface and tract files (in .obj format
 
 ## Overview
 
-The surface and tracts imported in Unity or read by MacOS Preview:
+The surface and tracts imported in Unity:
 
-![](./docs/brain_surf_trac.png)
+![](./docs/brain_surf_trac_in_Unity.png)
 
-![](./docs/brain_surf_pial.png)
+The complete pial surface read by Mac Preview:
 
-![](./docs/brain_surf_lh_V1.png)
+![](./docs/brain_surf_pial.jpeg)
 
-![](./docs/brain_tract_ilf_colored.png)
+The left-head V1 surface read by Mac Preview:
+
+![](./docs/brain_surf_lh_V1.jpeg)
+
+The left-head Inferior Longitudinal Fasciculus (ILF) with color code RGB-RAS read by Mac Preview:
+
+![](./docs/brain_tract_ilf_colored.jpeg)
 
 ## Requirements
 

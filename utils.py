@@ -1,6 +1,6 @@
 import numpy as np
 import nibabel as nib
-
+    
 def read_surf(surfPath):
     
     ver, face = nib.freesurfer.read_geometry(surfPath)
@@ -180,3 +180,11 @@ def read_trk_colored(path): # RAS - RGB
         arrPre += verNum_list[i+1]
     
     return ver_tkras_color, face
+
+def ras2tkras(ver, affine, trkvox2tkras):
+    
+    ver_4d = np.hstack((ver, np.ones((ver.shape[0],1))))
+    ver_vox = np.matmul(np.linalg.inv(affine), np.transpose(ver_4d))
+    ver_tkras = np.transpose(np.matmul(trkvox2tkras, ver_vox)[0:3, :])
+    
+    return ver_tkras

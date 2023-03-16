@@ -6,7 +6,8 @@ import utils
 SUBDIR = '/Users/fangcai/traculaData/diffusion_tutorial/trc' # replace it with your trac-all package path
 SUBNAME = 'PZH' # replace it with your subject id
 TRKLIST = ['lh.atr', 'lh.cab', 'lh.ccg', 'lh.cst', 'lh.ilf', 'lh.slfp', 'lh.slft', 'lh.unc',
-           'rh.atr', 'rh.cab', 'rh.ccg', 'rh.cst', 'rh.ilf', 'rh.slfp', 'rh.slft', 'rh.unc' ]
+           'rh.atr', 'rh.cab', 'rh.ccg', 'rh.cst', 'rh.ilf', 'rh.slfp', 'rh.slft', 'rh.unc',
+           'fmajor', 'fminor']
 
 trkPath = os.path.join(SUBDIR, SUBNAME, 'dpath')
 for root, dirs, files in os.walk(trkPath, topdown=True):

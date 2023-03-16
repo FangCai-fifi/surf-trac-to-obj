@@ -1,44 +1,21 @@
 import os
-import json
-import numpy as np
+import re
 import nibabel as nib
 import utils
 
-path = nib.streamlines.load('assets/path.pd.trk')
-affine = path.affine
-Trkvox2tkras = np.array([[-1, 0, 0, 128], [0, 1, 0, -128], [0, 0, 1, -127], [0, 0, 0, 1]]) # trk pkg is always LAS orientation!!!
 
+SUBDIR = '/Users/fangcai/traculaData/diffusion_tutorial/trc' # replace it with your trac-all package path
+SUBNAME = 'PZH' # replace it with your subject id
+TRKLIST = ['lh.atr', 'lh.cab', 'lh.ccg', 'lh.cst', 'lh.ilf', 'lh.slfp', 'lh.slft', 'lh.unc',
+           'rh.atr', 'rh.cab', 'rh.ccg', 'rh.cst', 'rh.ilf', 'rh.slfp', 'rh.slft', 'rh.unc',
+           'fmajor', 'fminor']
 
-verNum_list = []
-for item in path.streamlines:
-    verNum_list.append(item.shape[0])
-
-frameNum = max(verNum_list)
-max_index = verNum_list.index(frameNum)
-
-frames = {}
-line = path.streamlines[0]
-ver_tkras = utils.ras2tkras(ver=line, affine=affine, trkvox2tkras=Trkvox2tkras)
-
-for i in range(frameNum):
-    if i < verNum_list[0]:
-        frames[i] = list(ver_tkras[i, :])
-    else:
-        frames[i] = list(ver_tkras[-1, :])
-
-j = 1
-for item in path.streamlines[1:]:
-    ver_tkras = utils.ras2tkras(ver=item, affine=affine, trkvox2tkras=Trkvox2tkras)
-
-    # write frames in json
-    for i in range(frameNum):
-        if i < verNum_list[j]:
-            frames[i] += (list(ver_tkras[i, :]))
-        else:
-            frames[i] += (list(ver_tkras[-1, :]))
-    
-    j += 1
-
-
-with open("assets/traces.json", "w") as outfile:
-    json.dump(frames, outfile)
+trkPath = os.path.join(SUBDIR, SUBNAME, 'dpath')
+for root, dirs, files in os.walk(trkPath, topdown=True):
+    for dirname in dirs:
+        for item in TRKLIST:
+            if re.search(item, dirname):
+                dpath = os.path.join(trkPath, dirname, 'path.pd.trk')
+                print(dpath)
+                path = nib.streamlines.load(dpath)
+                utils.write_streamline_json(path=path, affine=path.affine, jsonpath=f"assets/{item}_traces.json")

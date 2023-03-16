@@ -1,4 +1,4 @@
-from vispy import scene, io
+from vispy import scene, io, color
 
 # create a scene
 canvas = scene.SceneCanvas(keys='interactive', show=True)
@@ -7,8 +7,8 @@ view = canvas.central_widget.add_view()
 
 # read an obj and create a mesh in the view
 verts, faces, normals, nothing = io.read_mesh('assets/lh.ilf.obj')
-mesh1 = scene.visuals.Mesh(vertices=verts, faces=faces, shading='smooth')
-view.add(mesh1)
+mesh = scene.visuals.Mesh(vertices=verts, faces=faces, shading='smooth')
+view.add(mesh)
 
 
 # camera type and params

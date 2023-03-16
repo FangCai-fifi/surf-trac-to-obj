@@ -1,7 +1,7 @@
 from vispy import scene, io
 
 # create a scene
-canvas = scene.SceneCanvas(keys='interactive', show=True)
+canvas = scene.SceneCanvas(keys='interactive', bgcolor='white', show=True)
 view = canvas.central_widget.add_view()
 
 

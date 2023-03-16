@@ -5,7 +5,7 @@ TRKLIST = ['lh.atr', 'lh.cab', 'lh.ccg', 'lh.cst', 'lh.ilf', 'lh.slfp', 'lh.slft
            'fmajor', 'fminor']
 
 # create a scene
-canvas = scene.SceneCanvas(keys='interactive', show=True)
+canvas = scene.SceneCanvas(keys='interactive', bgcolor='white', show=True)
 view = canvas.central_widget.add_view()
 
 

@@ -7,7 +7,7 @@ view = canvas.central_widget.add_view()
 
 # read an obj and create a mesh in the view
 verts, faces, normals, nothing = io.read_mesh('assets/pial.obj')
-mesh = scene.visuals.Mesh(vertices=verts, faces=faces, shading='smooth')
+mesh = scene.visuals.Mesh(vertices=verts, faces=faces, shading='smooth', color=(1,1,1, 1))
 view.add(mesh)
 
 

@@ -1,7 +1,8 @@
 import sys
 from vispy import app, scene, io
+from utils import read_obj_color
 
-canvas = scene.SceneCanvas(keys='interactive')
+canvas = scene.SceneCanvas(keys='interactive', bgcolor='white')
 canvas.size = 800, 800
 canvas.show()
 
@@ -20,11 +21,14 @@ grid.add_widget(vb2, 1, 0)
 grid.add_widget(vb3, 1, 2)
 grid.add_widget(vb4, 2, 1)
 
-# read an obj and create a mesh
-verts, faces, normals, nothing = io.read_mesh('assets/pial.obj')
-# mesh = scene.visuals.Mesh(vertices=verts, faces=faces, shading='smooth', color=(1, 1, 1, 1))
+# read an surf obj and create a mesh
+verts_surf, faces_surf, normals_surf, nothing_surf = io.read_mesh('assets/pial.obj')
+verts_trac, faces_trac, normals_trac, nothing_trac = io.read_mesh('assets/lh.ilf.obj')
+verts_trac_color = read_obj_color(objfile='assets/lh.ilf.obj')
+
 for par in scenes:
-    image = scene.visuals.Mesh(vertices=verts, faces=faces, shading='smooth', parent=par, color=(1, 1, 1, 1))
+    image_surf = scene.visuals.Mesh(vertices=verts_surf, faces=faces_surf, shading='smooth', color=(1, 1, 1, 0.2), parent=par)
+    image_trac = scene.visuals.Mesh(vertices=verts_trac, faces=faces_trac, shading='smooth', vertex_colors=verts_trac_color, parent=par)
 
 # Assign cameras
 vb1.camera = scene.TurntableCamera(fov=0, elevation=0.0, azimuth=0)

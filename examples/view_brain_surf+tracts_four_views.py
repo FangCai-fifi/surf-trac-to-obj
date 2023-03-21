@@ -1,6 +1,7 @@
 import sys
 from vispy import app, scene, io
 from utils import read_obj_color
+from vispy.visuals.filters import Alpha
 
 canvas = scene.SceneCanvas(keys='interactive', bgcolor='white')
 canvas.size = 800, 800
@@ -27,9 +28,12 @@ verts_trac, faces_trac, normals_trac, nothing_trac = io.read_mesh('assets/lh.ilf
 verts_trac_color = read_obj_color(objfile='assets/lh.ilf.obj')
 
 for par in scenes:
-    image_surf = scene.visuals.Mesh(vertices=verts_surf, faces=faces_surf, shading='smooth', color=(1, 1, 1, 0.2), parent=par)
+    # image_surf = scene.visuals.Mesh(vertices=verts_surf, faces=faces_surf, shading='smooth', color=(1, 1, 1, 0.2), parent=par)
+    # image_surf.attach(Alpha(1.0))
     image_trac = scene.visuals.Mesh(vertices=verts_trac, faces=faces_trac, shading='smooth', vertex_colors=verts_trac_color, parent=par)
-
+    image_trac.attach(Alpha(0.8))
+    image_surf = scene.visuals.Mesh(vertices=verts_surf, faces=faces_surf, shading='smooth', color=(1, 1, 1, 0.2), parent=par)
+    image_surf.attach(Alpha(0.2))
 # Assign cameras
 vb1.camera = scene.TurntableCamera(fov=0, elevation=0.0, azimuth=0)
 vb2.camera = scene.TurntableCamera(fov=0, elevation=0.0, azimuth=90, roll=270)

@@ -17,7 +17,10 @@ args, _ = parser.parse_known_args()
 mesh_path = load_data_file('spot/spot.obj.gz')
 texture_path = load_data_file('spot/spot.png')
 vertices, faces, normals, texcoords = read_mesh(mesh_path)
+print(vertices.shape)
+print(faces.shape)
 texture = np.flipud(imread(texture_path))
+print(texture.shape)
 
 canvas = scene.SceneCanvas(keys='interactive', bgcolor='white',
                            size=(800, 600))

@@ -46,7 +46,7 @@ verts_trac, faces_trac, normals_trac, texcoords_trac = read_mesh('assets/lh.ilf.
 verts_trac_color = read_obj_color(objfile='assets/lh.ilf.obj')
 
 # load texture map
-texture_path = load_data_file('spot/spot.png')
+texture_path = load_data_file('spot.png', directory='assets')
 texture = np.flipud(imread(texture_path))
 texture_filter = TextureFilter(texture, texcoords_surf)
 

@@ -19,10 +19,14 @@ The left-head Inferior Longitudinal Fasciculus (ILF) with color code RGB-RAS rea
 
 ![](./docs/brain_tract_ilf_colored.jpeg)
 
+The brain surface obj in a fake holographic view:
+
+![](./docs/brain_in_holoview.png)
+
 ## Requirements
 
 - Python 3.x;
-- Python packages: numpy, nibabel;
+- Python packages: numpy, nibabel, Pillow, PyQt5, vispy, pywavefront;
 - Prerequisites: Freesurfer 'recon-all' and 'trac-all' result packages prepared.
 
 ### Prerequisite steps

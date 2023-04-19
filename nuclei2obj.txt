@@ -1,0 +1,10 @@
+## ---- nuclei to obj ---- ##
+
+# Thalamic Nuclei segmentation
+segmentThalamicNuclei.sh  <subject_id>
+
+# convert volume to label
+mri_vol2label --i ThalamicNuclei.v12.T1.mgz --id <8109, subregion label #> --l <outputdir/filename.label>
+
+# nuclei label to obj
+python nuclei2obj.py

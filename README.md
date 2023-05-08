@@ -19,9 +19,6 @@ The left-head Inferior Longitudinal Fasciculus (ILF) with color code RGB-RAS rea
 
 ![](./docs/brain_tract_ilf_colored.jpeg)
 
-The brain surface obj in a fake holographic view:
-
-![](./docs/brain_in_holoview.PNG)
 
 ## Requirements
 
